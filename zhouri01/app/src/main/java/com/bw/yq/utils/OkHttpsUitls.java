@@ -23,9 +23,9 @@ public class OkHttpsUitls {
  }
 
  public static OkHttpsUitls OnIntents(){
-    if (okHttpsUitls!=null){
+    if (okHttpsUitls==null){
         synchronized (OkHttpsUitls.class){
-            if (okHttpsUitls!=null){
+            if (okHttpsUitls==null){
                 okHttpsUitls1 = new OkHttpsUitls();
             }
         }

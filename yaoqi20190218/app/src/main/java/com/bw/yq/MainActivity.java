@@ -16,6 +16,7 @@ import org.json.JSONArray;
 public class MainActivity extends AppCompatActivity implements ShowView {
 
     private RecyclerView rlv;
+    private ShowPresenter showPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +25,27 @@ public class MainActivity extends AppCompatActivity implements ShowView {
         rlv = findViewById(R.id.rlv);
         LinearLayoutManager manager=new LinearLayoutManager(this);
         rlv.setLayoutManager(manager);
-        ShowPresenter showPresenter=new ShowPresenter(this);
+        showPresenter = new ShowPresenter(this);
+        showPresenter.Accthach(this);
         showPresenter.sendShow();
     }
 
     @Override
-    public void view(JSONArray data1) {
+    public void view(final JSONArray data1) {
       //  Toast.makeText(this, data1.toString(), Toast.LENGTH_SHORT).show();
-        MyAdapter myAdapter = new MyAdapter(this, data1);
+        final MyAdapter myAdapter = new MyAdapter(this, data1);
         rlv.setAdapter(myAdapter);
         myAdapter.setOnItemClickListenter(new MyAdapter.OnItemClickListenter() {
             @Override
             public void onItemClick(int i) {
 
+
             }
 
             @Override
             public void onItemLongClick(int i) {
-
+                data1.remove(i);
+                myAdapter.notifyDataSetChanged();
             }
         });
 
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements ShowView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        showPresenter.Xie();
         Log.i("xxx","销毁了");
     }
 }

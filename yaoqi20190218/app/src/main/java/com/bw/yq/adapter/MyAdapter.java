@@ -27,6 +27,7 @@ private Context context;
 private JSONArray data1;
 private static final int ONE=0;
 private static final int TWO=1;
+    private Object o;
 
     public MyAdapter(Context context, JSONArray data1) {
         this.context = context;
@@ -79,10 +80,11 @@ public interface OnItemClickListenter{
                 JSONObject jsonObject = data1.getJSONObject(i);
                 String title = jsonObject.getString("title");
                 JSONArray pics = jsonObject.getJSONArray("pics");
-                String string = pics.getString(0);
+
+                String url="http://365jia.cn/uploads/"+pics.get(0);
 
                 viewHolder1.tv1.setText(title);
-                ImageLoader.getInstance().displayImage(string,viewHolder1.img);
+                ImageLoader.getInstance().displayImage(url,viewHolder1.img);
               viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                   @Override
                   public boolean onLongClick(View v) {
@@ -101,9 +103,12 @@ public interface OnItemClickListenter{
             try {
                 JSONObject object = data1.getJSONObject(i);
                 String title = object.getString("title");
-                String pics = object.getString("pics");
+
+                JSONArray pics = object.getJSONArray("pics");
+                String url="http://365jia.cn/uploads/"+pics.get(0);
+
                 myViewHolder1.tv2.setText(title);
-                ImageLoader.getInstance().displayImage(pics,myViewHolder1.img2);
+                ImageLoader.getInstance().displayImage(url,myViewHolder1.img2);
                      myViewHolder1.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                          @Override
                          public boolean onLongClick(View v) {

@@ -19,5 +19,6 @@
         android:layout_weight="1"
         android:layout_height="100dp"
         android:src="@mipmap/ic_launcher"/>
+
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -22,7 +22,7 @@ import okhttp3.Response;
  * @author yaoqi
  * @fileName ShowModel
  * @package com.bw.yq.Model
- * @date 2019/2/18 8:51
+ * @date 2019/2/18 :518
  */
 public class ShowModel {
     private String url="http://365jia.cn/news/api3/365jia/news/headline?page=1";
